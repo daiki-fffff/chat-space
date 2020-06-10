@@ -2,7 +2,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |email|string|null: false|
-|username|string|null: false|
+|name|string|null: false|
 |password|string|null: false|
 
 ### Association
@@ -13,11 +13,21 @@
 |Column|Type|Options|
 |-------|----|-------|
 |text|text|null: false|
+|image|string|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :post
+- belongs_to :group
+- belongs_to :user
+
+## groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|text|null: false|
+|adduser|string|null: false|
+
+### Association
 - belongs_to :user
 
 ## Group_usersテーブル
@@ -29,13 +39,3 @@
 ### Association
 - belongs_to :group
 - belongs_to :user
-
-# postsテーブル
-|Column|Type|Options|
-|-------|----|-------|
-|text|text|null: false|
-|image|string|
-
-### Association
-- has_many :messages
-- has_many :users
