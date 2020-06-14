@@ -1,0 +1,20 @@
+.chat-side
+  .side-header
+    .side-header__box
+      %h3.side-header-user-name__box
+        masa
+      %ul.side-header__icons
+        %li.side-header__icon
+          =  link_to '#' do
+            = icon('fas', 'edit')
+        %li.side-header__icon
+          = link_to '#' do
+            = icon('fas', 'cog')
+
+  .chat-side__group-list
+    .group
+      = link_to '#' do
+        .group__name
+          藤原家
+        .group__message
+          おはよう
