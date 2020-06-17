@@ -2,15 +2,17 @@
   .main-header
     .main-header__group
       .main-header__groupname
-        test
-      .main-header__memberlist
-        member: username
+        = @group.name
+      %ul.main-header__memberlist
+        member:
+        %li
+          - @group.users.each do |user|
+            = user.name   
+    = link_to 'Edit',edit_group_path(@group), class:"editbutton" 
   
-    = link_to '#', class:"main-header__editbutton" do
-      Edit
-
   .main-message
-    .message-field
+    .MessageField
+      = render @messages
       .message-box
         .message-info
           .message-info__username
@@ -21,23 +23,21 @@
           .message__text
             おはよう!
 
-      .message-box
-        .message-info
-          .message-info__username
-            masa
-          .message-info__date
-            2019/11/20(Wed) 17:43:34
-        .message-text__box
-          .message__text
-            今日は夜から雨
- 
-  .main-footer
-    %form.new_message
-      .input-box
-        %input{type:"text", class: "input-box__text", placeholder: "type a message"}
-        %label{class: "input-box__image"}
-          = icon('fas', 'image')
-          %input{type: "file", class:"input-box__image__file"}
-      %input{type: "submit", class: "submit-btn"}
-      
-        
+        .message-box
+          .message-info
+            .message-info__username
+              masa
+            .message-info__date
+              2019/11/20(Wed) 17:43:34
+          .message-text__box
+            .message__text
+              今日は夜から雨
+
+  .Footer
+    = form_with model: [@group, @message], html: {class: "Form"}, local: true do |f|
+      .Form__contents
+        = f.text_field :content, class: 'Form__inputContent', placeholder: 'type a message'
+        = f.label :image, class: 'Form__inputImage' do
+          = icon('far', 'image', class: 'Form__icon')
+          = f.file_field :image, class: 'Hidden'
+      = f.submit 'Send', class: 'Form__submit'
