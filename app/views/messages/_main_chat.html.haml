@@ -4,8 +4,8 @@
       .main-header__groupname
         = @group.name
       %ul.main-header__memberlist
-        member:
-        %li
+        member :
+        %li.main-header__member
           - @group.users.each do |user|
             = user.name   
     = link_to 'Edit',edit_group_path(@group), class:"editbutton" 
